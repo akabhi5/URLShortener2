@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mt-5"></div>
+<div class="container bg-warning m-auto rounded">
+  <div class="m-auto pt-5 pb-2">
+    <form action="{% url 'result' %}" method="POST" class="form my-2 my-lg-0">
+      {% csrf_token %}
+      <div class="container">
+        <input class="form-control mr-sm-2" type="search" placeholder="Enter URL" name="url">
+      </div>
+      <div class="text-center">
+        <button class="btn btn-outline-secondary my-2" type="submit">Generate</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="text-center text-light">
+    {% if all_urls %}
+      <h3>URLs generated till now</h3>
+      {% for url in all_urls %}
+        localhost:8000/{{ url }} <br>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
